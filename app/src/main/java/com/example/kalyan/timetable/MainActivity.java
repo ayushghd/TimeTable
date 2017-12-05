@@ -11,7 +11,6 @@ import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -31,13 +30,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.github.clans.fab.FloatingActionButton;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.majeur.cling.Cling;
 import com.majeur.cling.ClingManager;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
@@ -76,9 +72,9 @@ public class MainActivity extends FragmentActivity {
           mainActivity = this;
           context = this;
           String navigationSt[] = new String[]{"Projects          ","Tutorial          ","Settings          ",
-                  "Share          ", "About           ","Polling        ","Logout       "};
+                  "Share          ", "About           ","Polling        "};
           int navigationImg[] = new int[]{R.mipmap.ic_proj,R.mipmap.ic_tut,R.mipmap.ic_settings,
-                  R.mipmap.ic_share,R.mipmap.ic_people,R.mipmap.ic_poll,R.mipmap.ic_exit};
+                  R.mipmap.ic_share,R.mipmap.ic_people,R.mipmap.ic_poll};
           MyDrawerAdapter navigationAdapter = new MyDrawerAdapter(getApplicationContext(), navigationSt
                   , navigationImg);
           leftlist.setAdapter(navigationAdapter);
@@ -182,16 +178,6 @@ public class MainActivity extends FragmentActivity {
                 Intent i=new Intent(MainActivity.this,Poll.class);
                 startActivity(i);
                 break;
-            case 6:
-                AuthUI.getInstance()
-                        .signOut(MainActivity.this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            public void onComplete(@NonNull Task<Void> task) {
-                                // user is now signed out
-                                startActivity(new Intent(MainActivity.this, Login.class));
-                                finish();
-                            }
-                        });
         }
     }
 

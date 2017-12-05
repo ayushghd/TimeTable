@@ -86,11 +86,7 @@
         </activity>
         <activity android:name=".Thursday" />
         <activity android:name=".Friday" />
-        <activity android:name=".Poll"
-
-            android:label="Poll"/>
-        <activity android:name=".Login"
-            ></activity>
+        <activity android:name=".Poll"></activity>
     </application>
 
 </manifest>
